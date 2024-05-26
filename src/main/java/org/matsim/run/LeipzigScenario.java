@@ -84,7 +84,7 @@ public class LeipzigScenario extends MATSimApplication {
 	private BicycleHandling bike;
 
 	@CommandLine.Option(names = "--parking", defaultValue = "false", description = "Define if parking logic should be enabled.")
-	private boolean parking = false;
+	private boolean parking = true;
 
 	//TODO: define adequate values for the following doubles
 	@CommandLine.Option(names = "--parking-cost-time-period-start", defaultValue = "0", description = "Start of time period for which parking cost will be charged.")
@@ -140,12 +140,14 @@ public class LeipzigScenario extends MATSimApplication {
 		config.scoring().addActivityParams(new ScoringConfigGroup.ActivityParams("commercial_start").setTypicalDuration(3600));
 		config.scoring().addActivityParams(new ScoringConfigGroup.ActivityParams("commercial_end").setTypicalDuration(3600));
 
+
 		SimWrapperConfigGroup simWrapper = ConfigUtils.addOrGetModule(config, SimWrapperConfigGroup.class);
 
 		// Path is relative to config
 		simWrapper.defaultParams().shp = "../leipzig-utm32n/leipzig-utm32n.shp";
 		simWrapper.defaultParams().mapCenter = "12.38,51.34";
 		simWrapper.defaultParams().mapZoomLevel = 10.3;
+
 
 		for (String subpopulation : List.of("outside_person", "freight", "goodsTraffic", "commercialPersonTraffic", "commercialPersonTraffic_service")) {
 			config.replanning().addStrategySettings(
@@ -162,6 +164,8 @@ public class LeipzigScenario extends MATSimApplication {
 			);
 		}
 
+
+
 		if (sample.isSet()) {
 			// in [%].  adjust if sample size is less than 100%
 
@@ -174,6 +178,8 @@ public class LeipzigScenario extends MATSimApplication {
 
 			simWrapper.sampleSize = sample.getSample();
 		}
+
+
 
 
 		config.vspExperimental().setVspDefaultsCheckingLevel(VspExperimentalConfigGroup.VspDefaultsCheckingLevel.abort);
@@ -283,7 +289,7 @@ public class LeipzigScenario extends MATSimApplication {
 	@Override
 	protected void prepareControler(Controler controler) {
 
-		controler.addOverridingModule(new SimWrapperModule());
+//		controler.addOverridingModule(new SimWrapperModule());
 		controler.addOverridingModule(new PtStop2StopAnalysisModule());
 
 		controler.addOverridingModule(new AbstractModule() {
