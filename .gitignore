@@ -1,5 +1,9 @@
 # Add own ignores on top, don't edit the template
 
+
+output-leipzig-10pct_BaseCase
+output-leipzig-10pct_ParkkostenAmZoo
+
 input/*stops.xml
 input/*stops.csv
 *.Rhistory

@@ -84,7 +84,7 @@ public class LeipzigScenario extends MATSimApplication {
 	private BicycleHandling bike;
 
 	@CommandLine.Option(names = "--parking", defaultValue = "false", description = "Define if parking logic should be enabled.")
-	private boolean parking = true;
+	private boolean parking = false;
 
 	//TODO: define adequate values for the following doubles
 	@CommandLine.Option(names = "--parking-cost-time-period-start", defaultValue = "0", description = "Start of time period for which parking cost will be charged.")
@@ -100,7 +100,7 @@ public class LeipzigScenario extends MATSimApplication {
 	}
 
 	public LeipzigScenario() {
-		super(String.format("input/v%s/leipzig-v1.3.1-10pct.config.xml", VERSION));
+		super(String.format("input/v%s/leipzig-v1.3-0.1pct.config.xml", VERSION));
 	}
 
 	public static void main(String[] args) {
