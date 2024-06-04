@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE config SYSTEM "http://www.matsim.org/files/dtd/config_v2.dtd">
 <config>
-    <module name="timeAllocationMutator">
-        <param name="mutationRange" value="900.0"/>
+    <module name="TimeAllocationMutator">
+        <param name="mutationRange" value="7200.0"/>
     </module>
 
-    <module name="controller">
-        <param name="lastIteration" value="150"/>
-        <param name="overwriteFiles" value="failIfDirectoryExists"/>
-        <param name="runId" value="leipzig-10pct"/>
-        <param name="outputDirectory" value="./output-NO-CARS/policy-out2in-10pct-150it"/>
+    <module name="controler">
+        <param name="lastIteration" value="2"/>
+        <param name="overwriteFiles" value="deleteDirectoryIfExists"/>
+        <param name="runId" value="leipzig-0.1pct"/>
+        <param name="outputDirectory" value="./output/TEST2-output-leipzig-0.1pct"/>
         <param name="writeEventsInterval" value="100"/>
         <param name="writePlansInterval" value="100"/>
         <param name="enableLinkToLinkRouting" value="false" />
@@ -29,7 +29,7 @@
 
     <module name="plans">
         <param name="inputPlansFile"
-               value="./leipzig-10pct.output_plans.xml.gz"/>
+               value="./leipzig-v1.3-0.01pct.plans-initial.xml.gz"/>
         <param name="removingUnnecessaryPlanAttributes" value="true"/>
     </module>
 
@@ -49,7 +49,7 @@
         <param name="inputCountsFile" value="./leipzig-v1.3-counts-car-bast.xml.gz"/>
     </module>
 
-    <module name="routing">
+    <module name="planscalcroute">
         <!-- Some typical teleportation routing params are set by default, such as for walk and bike.  Setting this switch to "true" will clear them.  Note that this will also clear settings for helper modes such as for non_network_walk -->
         <param name="clearDefaultTeleportedModeParams" value="true" />
         <param name="networkModes" value="car,ride,bike,freight"/>
@@ -63,10 +63,10 @@
     <module name="qsim">
         <param name="startTime" value="00:00:00"/>
         <param name="endTime" value="36:00:00"/>
-        <param name="flowCapacityFactor" value="0.1"/>
+        <param name="flowCapacityFactor" value="0.001"/>
         <param name="mainMode" value="car,freight"/>
         <param name="numberOfThreads" value="8"/>
-        <param name="storageCapacityFactor" value="0.1"/>
+        <param name="storageCapacityFactor" value="0.001"/>
         <param name="stuckTime" value="30.0"/>
         <param name="trafficDynamics" value="kinematicWaves"/>
         <param name="useLanes" value="false" />
@@ -78,7 +78,7 @@
         <param name="simStarttimeInterpretation" value="onlyUseStarttime" />
     </module>
 
-    <module name="replanningAnnealer" >
+    <module name="ReplanningAnnealer" >
         <param name="activateAnnealingModule" value="true" />
         <parameterset type="AnnealingVariable" >
             <param name="annealParameter" value="globalInnovationRate" />
@@ -92,7 +92,7 @@
             <param name="endValue" value="0.01" />
         </parameterset>
     </module>
-    <module name="replanning">
+    <module name="strategy">
         <param name="fractionOfIterationsToDisableInnovation" value="0.9"/>
         <parameterset type="strategysettings">
             <param name="strategyName" value="ChangeExpBeta"/>
@@ -144,7 +144,7 @@
         <param name="vspDefaultsCheckingLevel" value="abort"/>
     </module>
 
-    <module name="scoring">
+    <module name="planCalcScore">
         <param name="fractionOfIterationsToStartScoreMSA" value="0.9"/>
         <param name="writeExperiencedPlans" value="true"/>
 
@@ -153,14 +153,14 @@
             <param name="performing" value="6.67"/>
 
             <parameterset type="modeParams">
-				<param name="constant" value="-0.11346535613817503" />
+				<param name="constant" value="0.05589622213000432" />
 				<param name="dailyMonetaryConstant" value="-13.22"/>
 				<param name="marginalUtilityOfTraveling_util_hr" value="-2.0" />
 				<param name="monetaryDistanceRate" value="-0.00025"/>
 				<param name="mode" value="car"/>
 			</parameterset>
             <parameterset type="modeParams">
-				<param name="constant" value="-1.4376276717111751" />
+				<param name="constant" value="-1.3713277029528415" />
 				<param name="dailyMonetaryConstant" value="0.0" />
 				<param name="dailyUtilityConstant" value="0.0" />
 				<param name="marginalUtilityOfDistance_util_m" value="0.0" />
@@ -169,7 +169,7 @@
 				<param name="mode" value="ride"/>
 			</parameterset>
             <parameterset type="modeParams">
-				<param name="constant" value="-0.4267240307172857" />
+				<param name="constant" value="-0.38882608663670926" />
 				<param name="dailyMonetaryConstant" value="0.0" />
 				<param name="dailyUtilityConstant" value="0.0" />
 				<param name="marginalUtilityOfDistance_util_m" value="0.0" />
@@ -177,7 +177,7 @@
                 <param name="mode" value="pt"/>
             </parameterset>
             <parameterset type="modeParams">
-				<param name="constant" value="-0.13902836420856232" />
+				<param name="constant" value="0.04080644914636075" />
 				<param name="dailyMonetaryConstant" value="0.0" />
 				<param name="dailyUtilityConstant" value="0.0" />
 				<param name="marginalUtilityOfDistance_util_m" value="0.0" />

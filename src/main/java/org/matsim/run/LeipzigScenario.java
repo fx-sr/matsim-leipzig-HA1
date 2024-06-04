@@ -100,7 +100,7 @@ public class LeipzigScenario extends MATSimApplication {
 	}
 
 	public LeipzigScenario() {
-		super(String.format("input/v%s/leipzig-v1.3-0.1pct.config.xml", VERSION));
+		super(String.format("input/v%s/leipzig-v1.3.1-10pct.config.xml", VERSION));
 	}
 
 	public static void main(String[] args) {
